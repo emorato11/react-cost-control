@@ -1,4 +1,5 @@
 import React from 'react'
+import { CostBudget } from './CostBudget'
 import { NewBudget } from './NewBudget'
 
 export const Header = ({ budget, setBudget, isValidBugdget, setIsValidBugdget }) => {
@@ -6,7 +7,7 @@ export const Header = ({ budget, setBudget, isValidBugdget, setIsValidBugdget })
     <header>
       <h1>Cost planning</h1>
       {isValidBugdget ? (
-        <p>Cost Control</p>
+        <CostBudget budget={budget} />
       ) : (
         <NewBudget budget={budget} setBudget={setBudget} setIsValidBugdget={setIsValidBugdget} />
       )}

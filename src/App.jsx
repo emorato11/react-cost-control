@@ -1,10 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Header } from './components/Header'
+import { Modal } from './components/Modal'
+import NewExpenditureIcon from './img/nuevo-gasto.svg'
 
 function App() {
   const [budget, setBudget] = useState(0)
 
   const [isValidBugdget, setIsValidBugdget] = useState(false)
+
+  const [modal, setModal] = useState(false)
+  const [animation, setAnimation] = useState(false)
+
+  const handleNewExpenditure = () => {
+    setModal(true)
+
+    setTimeout(() => {
+      setAnimation(true)
+    }, 700)
+  }
 
   return (
     <>
@@ -14,7 +27,12 @@ function App() {
         isValidBugdget={isValidBugdget}
         setIsValidBugdget={setIsValidBugdget}
       />
-      <h1>Cost control</h1>
+      {isValidBugdget && (
+        <div className='new-expenditure'>
+          <img src={NewExpenditureIcon} alt='New Cost Icon' onClick={handleNewExpenditure} />
+        </div>
+      )}
+      {modal && <Modal setModal={setModal} animation={animation} setAnimation={setAnimation} />}
     </>
   )
 }
